@@ -6,12 +6,12 @@ apt install -y tmux build-essential pkg-config libssl-dev git curl
 # Clone the repository
 git clone -b benchmarker_v2.0 https://github.com/tig-foundation/tig-monorepo.git
 cd tig-monorepo
-git config --global user.email “kyranmend@gmail.com” # can be anything
-git config --global user.name “KyranMendoza1” # can be anything
+git config --global user.email "kyranmend@gmail.com" # can be anything
+git config --global user.name "KyranMendoza1" # can be anything
+git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git vehicle_routing/cw_heuristic
 git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git vector_search/optimax_gpu
 git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git knapsack/knapheudp
 git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git satisfiability/sat_allocd
-git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git vehicle_routing/cw_heurisitic
 
 cd /app
 
@@ -30,7 +30,8 @@ cargo build -p tig-benchmarker --release --no-default-features --features "stand
 cd /app/tig-monorepo/target/release
 
 # Select algorithms to benchmark
-SELECTED_ALGORITHMS='{"satisfiability":"sat_allocd","vehicle_routing":"clarke_wright_super","knapsack":"knapmaxxing","vector_search":"optimax_gpu"}'
+SELECTED_ALGORITHMS='{"satisfiability":"sat_allocd","vehicle_routing":"cw_heuristic","knapsack":"knapheudp","vector_search":"optimax_gpu"}'
+
 # Calculate the number of workers (number of threads x 8)
 NUM_THREADS=$(nproc)
 NUM_WORKERS=$((NUM_THREADS))
@@ -42,4 +43,4 @@ tmux new-session -d -s TIG
 # Send the export commands and the command to run the benchmarker
 tmux send-keys -t TIG "export SELECTED_ALGORITHMS='$SELECTED_ALGORITHMS'" C-m
 tmux send-keys -t TIG "export NUM_WORKERS='$NUM_WORKERS'" C-m
-tmux send-keys -t TIG "./tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 '$SELECTED_ALGORITHMS' --workers $NUM_WORKERS --master 37.60.232.241“ C-m
+tmux send-keys -t TIG "./tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 '$SELECTED_ALGORITHMS' --workers $NUM_WORKERS --master 37.60.232.241" C-m
