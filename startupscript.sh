@@ -43,4 +43,4 @@ tmux new-session -d -s TIG
 # Send the export commands and the command to run the benchmarker
 tmux send-keys -t TIG "export SELECTED_ALGORITHMS='$SELECTED_ALGORITHMS'" C-m
 tmux send-keys -t TIG "export NUM_WORKERS='$NUM_WORKERS'" C-m
-tmux send-keys -t TIG "./tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 '$SELECTED_ALGORITHMS' --workers $NUM_WORKERS --master 37.60.232.241" C-m
+tmux send-keys -t TIG "./tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 '$SELECTED_ALGORITHMS' --workers $NUM_WORKERS" C-m
