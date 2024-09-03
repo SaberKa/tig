@@ -32,10 +32,6 @@ cd /app/tig-monorepo/target/release
 # Select algorithms to benchmark
 SELECTED_ALGORITHMS='{"satisfiability":"sat_allocd","vehicle_routing":"clarke_wright_super","knapsack":"knapmaxxing","vector_search":"optimax_gpu"}'
 
-# Calculate the number of workers (number of threads x 8)
-NUM_THREADS=$(nproc)
-NUM_WORKERS=$((NUM_THREADS))
-
 # Export the variables so they are available to the tmux session
 # Start a new tmux session
 tmux new-session -d -s TIG
