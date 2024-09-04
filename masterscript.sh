@@ -1,25 +1,7 @@
 #!/bin/bash
 # Update the package list and install necessary packages
 apt update
-apt install -y systemd tmux build-essential pkg-config libssl-dev git curl
-
-# Create a systemd service file to run the script after server restart
-cat <<EOF > /etc/systemd/system/tig-startup.service
-[Unit]
-Description=Run Tig Benchmark Script on Startup
-After=network.target
-
-[Service]
-ExecStart=/root/masterscript.sh
-Restart=always
-User=root
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Enable the service to run on startup
-systemctl enable tig-startup.service
+apt install -y tmux build-essential pkg-config libssl-dev git curl
 
 # Start a new tmux session named 'tig-session' and run the commands inside it
 tmux new-session -d -s tig-session bash -c '
