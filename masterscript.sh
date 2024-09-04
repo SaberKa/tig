@@ -29,5 +29,5 @@ tmux new-session -d -s tig-session bash -c '
 
     # Run the benchmarker with the number of workers set to the number of CPU threads
     SELECTED_ALGORITHMS='"'"'{"satisfiability":"sat_allocd","vehicle_routing":"clarke_wright_super","knapsack":"quick_knap","vector_search":"optimax_gpu"}'"'"'
-    ./target/release/tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 $SELECTED_ALGORITHMS --workers 0 --duration 15000
+    ./target/release/tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 $SELECTED_ALGORITHMS --workers 0 --duration 20000
 '
