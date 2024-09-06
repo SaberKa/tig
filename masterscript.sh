@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # Update the package list and install necessary packages
 apt update
@@ -20,12 +21,14 @@ tmux new-session -d -s tig-session bash -c '
     git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git knapsack/quick_knap
     git pull --no-edit --no-rebase https://github.com/tig-foundation/tig-monorepo.git satisfiability/sat_allocd
 
-    #build tig-worker
-    cargo build -p tig-worker --release
+    # Compile the selected algorithms
+    ALGOS_TO_COMPILE="satisfiability_sat_allocd vehicle_routing_clarke_wright_super knapsack_quick_knap vector_search_optimax_gpu"
+    cargo build -p tig-benchmarker --release --no-default-features --features "${ALGOS_TO_COMPILE}"
 
-    #run Master
-    cd tig-benchmarker
-    pip3 install -r requirements.txt
-    wget -O /root/tig-monorepo/tig-benchmarker/master/config.py https://raw.githubusercontent.com/KyranMendoza1/tig/main/config.py
-    python3 main.py
-    '
+    # Get the number of CPU threads available
+    WORKERS=$(nproc)
+
+    # Run the benchmarker with the number of workers set to the number of CPU threads
+    SELECTED_ALGORITHMS='"'"'{"satisfiability":"sat_allocd","vehicle_routing":"clarke_wright_super","knapsack":"quick_knap","vector_search":"optimax_gpu"}'"'"'
+    ./target/release/tig-benchmarker 0x5de35f527176887b1b42a2703ba4d64e62a48de4 3de214b978b22a7b9c0957ccfc3a95a1 $SELECTED_ALGORITHMS --workers 0 --duration 35000
+'
