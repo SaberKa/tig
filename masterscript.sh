@@ -26,5 +26,6 @@ tmux new-session -d -s tig-session bash -c '
     #run Master
     cd tig-benchmarker
     pip3 install -r requirements.txt
+    wget -O /root/tig-monorepo/tig-benchmarker/master/filename http://example.com/file
     python3 main.py
 '
