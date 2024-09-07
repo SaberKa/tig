@@ -1,5 +1,6 @@
 #!/bin/bash
 # Update the package list and install necessary packages
+unminimize
 apt update
 apt-get install sudo -y
 
