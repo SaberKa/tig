@@ -1,7 +1,7 @@
-PLAYER_ID = "0x5de35f527176887b1b42a2703ba4d64e62a48de4" # your player_id
-API_KEY = "3de214b978b22a7b9c0957ccfc3a95a1" # your api_key
-TIG_WORKER_PATH = "/root/tig-monorepo/target/release/tig-worker" # path to executable tig-worker
-TIG_ALGORITHMS_FOLDER = "/root/tig-monorepo/tig-algorithms" # path to tig-algorithms folder
+PLAYER_ID = "0xff45c36b3177e04837a0625cf107c1f52fbbf984" # your player_id
+API_KEY = "aae29ef9068f0436966a7fb03af82e57" # your api_key
+TIG_WORKER_PATH = "/home/saber/tig-monorepo/target/release/tig-worker" # path to executable tig-worker
+TIG_ALGORITHMS_FOLDER = "/home/saber/tig-monorepo/tig-algorithms" # path to tig-algorithms folder
 API_URL = "https://mainnet-api.tig.foundation"
 
 if PLAYER_ID is None or API_KEY is None or TIG_WORKER_PATH is None or TIG_ALGORITHMS_FOLDER is None:
@@ -9,19 +9,17 @@ if PLAYER_ID is None or API_KEY is None or TIG_WORKER_PATH is None or TIG_ALGORI
 
 PORT = 5115
 JOBS = dict(
-    # add an entry for each challenge you want to benchmark
     satisfiability=dict(
-        # add an entry for each algorithm you want to benchmark
-        sat_optima=dict(
-            benchmark_duration=10000, # amount of time to run the benchmark in milliseconds
+        sat_allocd=dict(
+            benchmark_duration=15000, # amount of time to run the benchmark in milliseconds
             wait_slave_duration=5000, # amount of time to wait for slaves to post solutions before submitting
             num_jobs=1, # number of jobs to create. each job will sample its own difficulty
-            weight=1.5, # weight of jobs for this algorithm. more weight = more likely to be picked
+            weight=1.0, # weight of jobs for this algorithm. more weight = more likely to be picked
         )
     ),
     vehicle_routing=dict(
-        clarke_wright_super=dict(
-            benchmark_duration=10000,
+        cw_heuristic=dict(
+            benchmark_duration=15000,
             wait_slave_duration=5000,
             num_jobs=1,
             weight=1.0,
@@ -29,7 +27,7 @@ JOBS = dict(
     ),
     knapsack=dict(
         quick_knap=dict(
-            benchmark_duration=10000,
+            benchmark_duration=15000,
             wait_slave_duration=5000,
             num_jobs=1,
             weight=1.0,
@@ -37,8 +35,8 @@ JOBS = dict(
     ),
     vector_search=dict(
         optimax_gpu=dict(
-            benchmark_duration=30000, # recommend a high duration
-            wait_slave_duration=30000, # recommend a high duration
+            benchmark_duration=40000, # recommend a high duration
+            wait_slave_duration=40000, # recommend a high duration
             num_jobs=1,
             weight=1.0,
         )
