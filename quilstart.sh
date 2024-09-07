@@ -1,6 +1,7 @@
 #!/bin/bash
 # Update the package list and install necessary packages
 apt update
+apt-get install sudo -y
 
 tmux new-session -d -s quil-session bash -c '
 #get-ready
