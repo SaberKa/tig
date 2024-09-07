@@ -12,11 +12,11 @@ JOBS = dict(
     # add an entry for each challenge you want to benchmark
     satisfiability=dict(
         # add an entry for each algorithm you want to benchmark
-        sat_allocd=dict(
+        sat_optima=dict(
             benchmark_duration=10000, # amount of time to run the benchmark in milliseconds
             wait_slave_duration=5000, # amount of time to wait for slaves to post solutions before submitting
             num_jobs=1, # number of jobs to create. each job will sample its own difficulty
-            weight=1.0, # weight of jobs for this algorithm. more weight = more likely to be picked
+            weight=2.0, # weight of jobs for this algorithm. more weight = more likely to be picked
         )
     ),
     vehicle_routing=dict(
